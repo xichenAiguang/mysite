@@ -1,0 +1,94 @@
+第一梯队：和你现在工作最贴
+
+AI Systems Performance Engineering - Chris Fregly
+
+GPU / CUDA
+PyTorch profiling & optimization
+multi-GPU / multi-node
+training + inference scaling
+AI infrastructure 性能优化
+
+这本基本就是你的目标书。它强调从 hardware、software 到 algorithm 联合优化，而且覆盖 multinode training 和 inference server。
+
+Designing Machine Learning Systems - Chip Huyen
+
+production ML system
+model serving
+data / model distribution shift
+monitoring
+reliability
+
+相比第一本，它 GPU 底层少，系统设计更多。如果你想从现在的 DLIS/Falcon serving infra 往 AI Systems Engineer / AI Infra Architect 方向走，我很推荐。
+
+Machine Learning Systems - Vijay Janapa Reddi et al.
+
+这本更像教材，重点是： Model → Runtime → Hardware → Serving → Edge/Cloud
+
+对建立完整 ML Systems mental model 很不错。
+
+第二梯队：补「Performance Engineer」基本功
+
+Systems Performance - Brendan Gregg
+
+⭐⭐⭐⭐⭐ 我尤其推荐你读。
+
+它不专门讲 AI，但很多你经常问的问题：
+
+latency 为什么变高？
+ CPU / memory / network 谁是 bottleneck？
+ utilization 高意味着什么？
+ throughput 和 latency 什么关系？
+ queue 为什么会把 latency 打爆？
+
+都属于这本书的核心内容。
+
+BPF Performance Tools - Brendan Gregg
+
+更偏 Linux kernel observability / performance debugging。
+
+如果以后遇到：
+
+GPU utilization 看起来正常 → Triton latency 却很高 → Envoy connection / network / CPU / syscall？
+
+这种复杂问题，这套知识会非常有价值。
+
+第三梯队：GPU / CUDA 深挖
+
+Programming Massively Parallel Processors
+
+GPU 经典教材。
+
+重点：
+
+warp
+SM
+memory hierarchy
+coalescing
+occupancy
+CUDA kernel optimization
+
+如果你想真正理解：
+
+为什么这个 model GPU utilization 低？
+ 为什么 batch size 增大 throughput 会提高？
+ 为什么 kernel launch 很多但 GPU 吃不满？
+
+这本非常重要。
+
+CUDA by Example
+
+比上一本简单很多，适合先快速建立 CUDA intuition。
+
+第四梯队：LLM Serving
+
+这个领域变化太快，目前我反而不建议只靠书。
+
+你现在搞 Triton + vLLM + GPU serving，更值得直接读：
+
+vLLM paper/code → PagedAttention → continuous batching → KV cache → prefix caching → tensor parallel → speculative decoding
+
+以及：
+
+Triton → scheduler → dynamic batching → instance group → backend → model execution → metrics
+
+这些比一般的 LLM Engineering 书对你有用得多
